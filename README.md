@@ -66,4 +66,4 @@ gcc -Wall -Werror -Wextra -D BUFFER_SIZE=xx get_next_line.c get_next_line_utils.
 Or you can also use this following testers to test the code yourself :)
 
 * [Tripouille/gnlTester](https://github.com/Tripouille/gnlTester)
-* [francinette] (https://github.com/xicodomingues/francinette)
+* [xicodomingues/francinette](https://github.com/xicodomingues/francinette)
