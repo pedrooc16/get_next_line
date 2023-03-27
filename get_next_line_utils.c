@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/23 16:07:00 by pecosta-          #+#    #+#             */
+/*   Updated: 2023/03/27 16:07:36 by pecosta-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 size_t	ft_strlen(const char *s)
 {
 	unsigned long int	i;
@@ -10,11 +22,15 @@ size_t	ft_strlen(const char *s)
 
 static char	*ft_strcpy(char *dest, const char *src)
 {
-	while (*src)
+	int		i;
+
+	i = 0;
+	while (src[i] != '\0')
 	{
-		*dest++ = *src++;
+		dest[i] = src[i];
+		i++;
 	}
-	*dest = '\0';
+	dest[i] = '\0';
 	return (dest);
 }
 

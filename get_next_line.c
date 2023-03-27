@@ -5,60 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 16:18:26 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/03/08 16:18:26 by pecosta-         ###   ########.fr       */
+/*   Created: 2023/03/20 16:02:41 by pecosta-          #+#    #+#             */
+/*   Updated: 2023/03/27 16:07:41 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <stddef.h>
 #include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#define BUFFER_SIZE 8
 
 char	*file_to_read(int fd, char *buffer)
 {
-	int		i;
 	char 	temp[BUFFER_SIZE + 1];
 	int		bytes;
 
-	i = 0;
 	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
 	{
 		temp[bytes] = '\0';
 		buffer = ft_strjoin(buffer, temp);
-		while(buffer[i])
-		{
-			if (buffer[i] == '\n')
-			break;
-			i++;
-		}
 	}
 	if (bytes == -1)
 		return (NULL);
 	return (buffer);
 }
 
-char	*get_the_next_line(char *buffer)
+char	*get_the_next_line(char *buffer, int * i)
 {
 	char *line;
-	int		i;
 	int		j;
+	int		index;
 
-	if (!buffer)
+	index = 0;
+	if (buffer[index] == 0)
 		return (NULL);
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-	i++;
-	line = malloc(sizeof(char) * (i + 2));
+	while (buffer[index] && buffer[index] != '\n')
+	{
+		index++;
+		(*i)++;
+	}
+	line = malloc(sizeof(char) * (index + 2));
 	if (!line)
 		return (NULL);
 	j = 0;
-	
-	while (buffer[j] != '\n')
+	while (buffer[j] && buffer[j] != '\n')
 	{
-	line[j] = buffer[j];
-	j++;
+		line[j] = buffer[j];
+		j++;
 	}
 	if (buffer[j] == '\n')
 	line[j++] = '\n';
@@ -66,17 +59,49 @@ char	*get_the_next_line(char *buffer)
 	return (line);
 }
 
+char	*refresh_buffer(char *buffer, int * i)
+{
+	int		index;
+	char 	*refresh;
+	size_t	size_of_buffer;
+	int	j;
+
+	if (*buffer == 0)
+	{
+		free(buffer);
+		return (0);
+	}
+	index = *i;
+	size_of_buffer = ft_strlen(buffer) - index;
+	refresh = malloc(sizeof(char) * (size_of_buffer + 1));
+
+	if (!refresh)
+		return (NULL);
+	if (buffer[index] == '\n')
+	index++;
+	j = 0;
+	while (buffer[index])
+	refresh[j++] = buffer[index++];
+	refresh[j] = '\0';
+	free(buffer);
+	return(refresh);
+}
+
 char	*get_next_line(int fd)
 {
+	char 	*line;
+	static char *buffer;
+	int	i;
+	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	char *line;
-	static char *buffer;
 
 	buffer = file_to_read(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	line = get_the_next_line(buffer);
+	i = 0;
+	line = get_the_next_line(buffer, &i);
+	buffer = refresh_buffer (buffer, &i);
 	return (line);
 }
 
@@ -85,10 +110,12 @@ int main()
 	char *line;
 	int fd = open("texto.txt", O_RDONLY);
         line = get_next_line(fd);
+		int	i = 0;
 	while (line)
 	{
 		printf("%s", line);
                 line = get_next_line(fd);
+				i++;
 	}
         printf("\n");
 }
