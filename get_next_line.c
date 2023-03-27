@@ -13,7 +13,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 8
+#define BUFFER_SIZE 9999
 
 char	*file_to_read(int fd, char *buffer)
 {
@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 	static char *buffer;
 	int	i;
 	
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 
 	buffer = file_to_read(fd, buffer);
