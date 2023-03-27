@@ -9,11 +9,8 @@
 /*   Updated: 2023/03/27 16:07:41 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#define BUFFER_SIZE 9999
+
+#include "get_next_line.h"
 
 char	*file_to_read(int fd, char *buffer)
 {
