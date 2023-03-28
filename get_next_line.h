@@ -8,12 +8,13 @@
 
 //unistd & stdio for read, fcntl & sys/stat for open;
 
-//# ifndef BUFFER_SIZE
-//#  define BUFFER_SIZE 4
-//# endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
+int	ft_search(char *str, int s);
 size_t	ft_strlen(const char *s);
 
 #endif

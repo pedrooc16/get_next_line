@@ -21,6 +21,8 @@ char	*file_to_read(int fd, char *buffer)
 	{
 		temp[bytes] = '\0';
 		buffer = ft_strjoin(buffer, temp);
+		if (!ft_search(buffer,'\n'))
+		break;
 	}
 	if (bytes == -1)
 		return (NULL);
@@ -107,12 +109,10 @@ int main()
 	char *line;
 	int fd = open("texto.txt", O_RDONLY);
         line = get_next_line(fd);
-		int	i = 0;
 	while (line)
 	{
 		printf("%s", line);
                 line = get_next_line(fd);
-				i++;
 	}
         printf("\n");
 }
