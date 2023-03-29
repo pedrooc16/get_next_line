@@ -6,7 +6,7 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:07:00 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/03/28 14:21:12 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:10:32 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	ft_search(char *str, int s)
 	while (str[i] != s)
 	i++;
 	if (str[i] == s)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 size_t	ft_strlen(const char *s)

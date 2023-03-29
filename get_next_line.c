@@ -12,23 +12,6 @@
 
 #include "get_next_line.h"
 
-char	*file_to_read(int fd, char *buffer)
-{
-	char 	temp[BUFFER_SIZE + 1];
-	int		bytes;
-
-	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
-	{
-		temp[bytes] = '\0';
-		buffer = ft_strjoin(buffer, temp);
-		if (!ft_search(buffer,'\n'))
-		break;
-	}
-	if (bytes == -1)
-		return (NULL);
-	return (buffer);
-}
-
 char	*get_the_next_line(char *buffer, int * i)
 {
 	char *line;
@@ -91,11 +74,20 @@ char	*get_next_line(int fd)
 	char 	*line;
 	static char *buffer;
 	int	i;
+	char	temp[BUFFER_SIZE + 1];
+	int		bytes;
 	
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-
-	buffer = file_to_read(fd, buffer);
+	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
+	{
+		temp[bytes] = '\0';
+		buffer = ft_strjoin(buffer, temp);
+		if (ft_search(buffer,'\n'))
+		break;
+	}
+	if (bytes == -1)
+		return (NULL);
 	if (!buffer)
 		return (NULL);
 	i = 0;
