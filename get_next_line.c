@@ -86,9 +86,7 @@ char	*get_next_line(int fd)
 		if (ft_search(buffer,'\n'))
 		break;
 	}
-	if (bytes == -1)
-		return (NULL);
-	if (!buffer)
+	if ((bytes == -1) || (!buffer))
 		return (NULL);
 	i = 0;
 	line = get_the_next_line(buffer, &i);
@@ -106,5 +104,5 @@ int main()
 		printf("%s", line);
                 line = get_next_line(fd);
 	}
-        printf("\n");
+        //printf("\n");
 }
