@@ -6,20 +6,22 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:07:00 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/03/29 14:10:32 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:27:44 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_search(char *str, int s)
+int	ft_search(char *str)
 {
 	int		i;
+	int		to_found;
 
 	i = 0;
-	while (str[i] != s)
+	to_found = '\n';
+	while (str[i] != to_found)
 	i++;
-	if (str[i] == s)
+	if (str[i] == to_found)
 		return (1);
 	return (0);
 }

@@ -83,7 +83,7 @@ char	*get_next_line(int fd)
 	{
 		temp[bytes] = '\0';
 		buffer = ft_strjoin(buffer, temp);
-		if (ft_search(buffer,'\n'))
+		if (ft_search(buffer))
 		break;
 	}
 	if ((bytes == -1) || (!buffer))
