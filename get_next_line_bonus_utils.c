@@ -6,13 +6,13 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:20:09 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/03/31 17:21:10 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:43:29 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	ft_search(char *str)
+int ft_search(char *str)
 {
 	int		i;
 	int		to_found;
