@@ -6,7 +6,7 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:05 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/03/29 16:35:33 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/03/31 09:52:58 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ char	*get_next_line(int fd)
 	
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
-	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
+	while ((bytes = read(fd,0,0)) > 0)
 	{
 		temp[bytes] = '\0';
 		buffer[fd] = ft_strjoin(buffer[fd], temp);
