@@ -6,7 +6,7 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:05 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/03/31 17:54:31 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/01 12:32:18 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*get_next_line(int fd)
 	{
 		temp[bytes] = '\0';
 		buffer[fd] = ft_strjoin(buffer[fd], temp);
-		if (!(ft_search(buffer[fd])))
+		if ft_search(buffer[fd])
 		break;
 	}
 	if ((bytes == -1) || (!buffer[fd]))
