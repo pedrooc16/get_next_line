@@ -89,28 +89,26 @@ char	*read_line(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	char 	*read;
+	char 	*line;
 	static char *buffer;
 	int	i;
-	char	temp[BUFFER_SIZE + 1];
 	int		bytes;
 	
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-		read = read_file(read, fd);
-
-	if ((bytes == -1) || (!buffer))
+	if (buffer) && (ft_search(buffer, '\n'))
+	{
+		line = get_the_next_line(buffer, &i, line);
+		buffer = refresh_buffer (buffer, &i);
+		return (buffer);
+	}
+	if (!buffer)
 		return (NULL);
 	i = 0;
-	line = get_the_next_line(buffer, &i, line);
 	buffer = refresh_buffer (buffer, &i);
 	return (line);
 }
 
-char	*read_line(int fd, char *buffer)
-{
-	
-}
 
 int main()
 {
