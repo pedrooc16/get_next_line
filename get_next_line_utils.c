@@ -6,24 +6,28 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:07:00 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/03/31 17:46:51 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:31:57 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_search(char *str)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	int		to_found;
+	unsigned char	i;
 
-	i = 0;
-	to_found = '\n';
-	while (str[i] != to_found)
-	i++;
-	if (str[i] == to_found)
-		return (1);
-	return (0);
+	i = c;
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s == (char)i)
+			return ((char *)s);
+		s++;
+	}
+	if (i == '\0')
+		return ((char *)s);
+	return (NULL);
 }
 
 size_t	ft_strlen(const char *s)

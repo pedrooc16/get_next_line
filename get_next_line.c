@@ -14,7 +14,7 @@
 
 char	*get_the_next_line(char *buffer, int * i)
 {
-	char *line;
+	char line;
 	int		j;
 	int		index;
 
@@ -26,9 +26,7 @@ char	*get_the_next_line(char *buffer, int * i)
 		index++;
 		(*i)++;
 	}
-	line = malloc(sizeof(char) * (index + 2));
-	if (!line)
-		return (NULL);
+	line = malloc(sizeof())
 	j = 0;
 	while (buffer[j] && buffer[j] != '\n')
 	{
@@ -69,9 +67,29 @@ char	*refresh_buffer(char *buffer, int * i)
 	return(refresh);
 }
 
+char	*read_line(int fd, char *buffer)
+{
+	int	bytes;
+	char	temp[BUFFER_SIZE + 1];
+
+	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
+	{
+		temp[bytes] = '\0';
+		buffer = ft_strjoin(buffer, temp);
+		if (ft_search(buffer, '\n'))
+		break;
+	}
+	if (bytes < 0) 
+	{
+		if (buffer && ft_search(line log, '\0'))
+			free (buffer);
+		return (NULL);
+	}
+}
+
 char	*get_next_line(int fd)
 {
-	char 	*line;
+	char 	*read;
 	static char *buffer;
 	int	i;
 	char	temp[BUFFER_SIZE + 1];
@@ -79,19 +97,19 @@ char	*get_next_line(int fd)
 	
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
-	{
-		temp[bytes] = '\0';
-		buffer = ft_strjoin(buffer, temp);
-		if (ft_search(buffer))
-		break;
-	}
+		read = read_file(read, fd);
+
 	if ((bytes == -1) || (!buffer))
 		return (NULL);
 	i = 0;
-	line = get_the_next_line(buffer, &i);
+	line = get_the_next_line(buffer, &i, line);
 	buffer = refresh_buffer (buffer, &i);
 	return (line);
+}
+
+char	*read_line(int fd, char *buffer)
+{
+	
 }
 
 int main()
@@ -102,6 +120,7 @@ int main()
 	while (line)
 	{
 		printf("%s", line);
+		free(line);
                 line = get_next_line(fd);
 	}
         //printf("\n");

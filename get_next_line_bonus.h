@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
-int	ft_search(char *str);
+char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 
 #endif
