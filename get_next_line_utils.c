@@ -6,7 +6,7 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:07:00 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/04/17 19:00:50 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:18:43 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ char	*ft_search(const char *s, int c)
 size_t	ft_strlen(const char *s)
 {
 	unsigned long int	i;
-
+	
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;

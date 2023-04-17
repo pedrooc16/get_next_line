@@ -177,7 +177,7 @@ char	*get_next_line(int fd)
 int main()
 {
 	char *line;
-	int fd = open("texto.txt", O_RDONLY);
+	int fd = open("joao.txt", O_RDONLY);
         line = get_next_line(fd);
 	while (line)
 	{
@@ -185,5 +185,6 @@ int main()
 		free(line);
         line = get_next_line(fd);
 	}
+	free(line);
         //printf("\n");
 }

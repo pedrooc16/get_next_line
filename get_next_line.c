@@ -83,9 +83,9 @@ char	*read_line(int fd, char *buffer)
 		if (!buffer[0])
 		{
 			free(buffer);
-			//buffer = NULL;
+			buffer = NULL;
 		}
-		return (buffer);
+		return (NULL);
 	}
 	return (buffer);
 }
@@ -100,16 +100,17 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (buffer && (ft_search(buffer, '\n')))
 	{
+		i = 0;
 		line = get_the_next_line(buffer, &i);
-		buffer = refresh_buffer (buffer, i);
-		return (buffer);
+		buffer = refresh_buffer(buffer, i);
+		return (line);
 	}
 	buffer = read_line(fd, buffer);
 	if (!buffer)
 		return (NULL);
 	i = 0;
 	line = get_the_next_line(buffer, &i);
-	buffer = refresh_buffer (buffer, i);
+	buffer = refresh_buffer(buffer, i);
 	return (line);
 }
 
@@ -125,5 +126,6 @@ int main()
 		free(line);
         line = get_next_line(fd);
 	}
+	free(line);
         //printf("\n");
 }
