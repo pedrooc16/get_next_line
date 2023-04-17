@@ -69,7 +69,7 @@ char	*refresh_buffer(char *buffer, int * i)
 
 char	*read_line(int fd, char *buffer)
 {
-	int	bytes;
+	int		bytes;
 	char	temp[BUFFER_SIZE + 1];
 
 	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
@@ -92,19 +92,20 @@ char	*get_next_line(int fd)
 	char 	*line;
 	static char *buffer;
 	int	i;
-	int		bytes;
 	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (buffer) && (ft_search(buffer, '\n'))
 	{
-		line = get_the_next_line(buffer, &i, line);
+		line = get_the_next_line(buffer, &i);
 		buffer = refresh_buffer (buffer, &i);
 		return (buffer);
 	}
+	buffer = read_line(fd, buffer);
 	if (!buffer)
 		return (NULL);
 	i = 0;
+	line = get_the_next_line(buffer, &i);
 	buffer = refresh_buffer (buffer, &i);
 	return (line);
 }
