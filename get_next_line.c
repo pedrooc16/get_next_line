@@ -49,7 +49,7 @@ char	*refresh_buffer(char *buffer, int i)
 	if (*buffer == 0)
 	{
 		free(buffer);
-		return (0);
+		return (NULL);
 	}
 	index = i;
 	size_of_buffer = ft_strlen(buffer) - index;
@@ -83,7 +83,7 @@ char	*read_line(int fd, char *buffer)
 		if (!buffer[0])
 		{
 			free(buffer);
-			buffer = NULL;
+			//buffer = NULL;
 		}
 		return (buffer);
 	}
