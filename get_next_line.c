@@ -14,7 +14,7 @@
 
 char	*get_the_next_line(char *buffer, int * i)
 {
-	char line;
+	char 	*line;
 	int		j;
 	int		index;
 
@@ -26,7 +26,7 @@ char	*get_the_next_line(char *buffer, int * i)
 		index++;
 		(*i)++;
 	}
-	line = malloc(sizeof())
+	line = malloc(sizeof(char) * (index + 2));
 	j = 0;
 	while (buffer[j] && buffer[j] != '\n')
 	{
@@ -39,7 +39,7 @@ char	*get_the_next_line(char *buffer, int * i)
 	return (line);
 }
 
-char	*refresh_buffer(char *buffer, int * i)
+char	*refresh_buffer(char *buffer, int i)
 {
 	int		index;
 	char 	*refresh;
@@ -51,10 +51,9 @@ char	*refresh_buffer(char *buffer, int * i)
 		free(buffer);
 		return (0);
 	}
-	index = *i;
+	index = i;
 	size_of_buffer = ft_strlen(buffer) - index;
 	refresh = malloc(sizeof(char) * (size_of_buffer + 1));
-
 	if (!refresh)
 		return (NULL);
 	if (buffer[index] == '\n')
@@ -79,12 +78,16 @@ char	*read_line(int fd, char *buffer)
 		if (ft_search(buffer, '\n'))
 		break;
 	}
-	if (bytes < 0) 
+    if (bytes <= 0)
 	{
-		if (buffer && ft_search(line log, '\0'))
-			free (buffer);
-		return (NULL);
+		if (!buffer[0])
+		{
+			free(buffer);
+			buffer = NULL;
+		}
+		return (buffer);
 	}
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
@@ -95,10 +98,10 @@ char	*get_next_line(int fd)
 	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (buffer) && (ft_search(buffer, '\n'))
+	if (buffer && (ft_search(buffer, '\n')))
 	{
 		line = get_the_next_line(buffer, &i);
-		buffer = refresh_buffer (buffer, &i);
+		buffer = refresh_buffer (buffer, i);
 		return (buffer);
 	}
 	buffer = read_line(fd, buffer);
@@ -106,7 +109,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	i = 0;
 	line = get_the_next_line(buffer, &i);
-	buffer = refresh_buffer (buffer, &i);
+	buffer = refresh_buffer (buffer, i);
 	return (line);
 }
 
@@ -120,7 +123,7 @@ int main()
 	{
 		printf("%s", line);
 		free(line);
-                line = get_next_line(fd);
+        line = get_next_line(fd);
 	}
         //printf("\n");
 }

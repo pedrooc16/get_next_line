@@ -6,13 +6,13 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:07:00 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/04/17 17:31:57 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:00:50 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_search(const char *s, int c)
 {
 	unsigned char	i;
 
