@@ -26,7 +26,7 @@ char	*get_the_next_line(char *buffer, int * i)
 		index++;
 		(*i)++;
 	}
-	line = malloc(sizeof(char) * (index + 2));
+	line = malloc(sizeof(char) * (*(i) + 2));
 	j = 0;
 	while (buffer[j] && buffer[j] != '\n')
 	{
