@@ -148,14 +148,14 @@ char	*read_line(int fd, char *buffer)
 	{
 		temp[bytes] = '\0';
 		buffer = ft_strjoin(buffer, temp);
-		if (ft_search(buffer, '\n'))
+		if (ft_search(buffer, '\n') || bytes == 0)
 		break;
 	}
-    if (bytes <= 0)
+    if (bytes < 0)
 	{
-		if (!buffer)
+		if (buffer)
 		{
-			free(buffer); // amanha avaliar se esta linha de codigo faz sentido 
+			//free(buffer);  
 			buffer = NULL;
 		}
 		return (NULL);
@@ -180,10 +180,10 @@ char	*get_next_line(int fd)
 	if (!buffer)
 			return (NULL);
 	}
-		i = 0;
-		line = get_the_next_line(buffer, &i);
-		buffer = refresh_buffer(buffer, i);
-		return (line);
+	i = 0;
+	line = get_the_next_line(buffer, &i);
+	buffer = refresh_buffer(buffer, i);
+	return (line);
 	}
 
 
@@ -192,14 +192,25 @@ int main()
 	char *line;
 	int fd = open("texto.txt", O_RDONLY);
         line = get_next_line(fd);
-	while (line)
+		int i = 0;
+	while (i < 2)
 	{
 		printf("%s", line);
 		free(line);
+		i++;
         line = get_next_line(fd);
 	}
 	free(line);
 	line = get_next_line(55);
 	free(line);
         //printf("\n");
-}
+		while (1)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		free(line);
+		if (!line)
+		break;
+	}
+	free(line);
+	}
