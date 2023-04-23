@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 //#include "get_next_line.h"
-#define BUFFER_SIZE 40
+#define BUFFER_SIZE 25
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -189,13 +189,14 @@ int main()
 	char *line;
 	int fd = open("texto.txt", O_RDONLY);
         line = get_next_line(fd);
+		printf("%s\n", line);
 		int i = 0;
 	while (i < 2)
 	{
-		printf("%s", line);
 		free(line);
 		i++;
         line = get_next_line(fd);
+		printf("%s\n", line);
 	}
 	free(line);
 	line = get_next_line(55);
