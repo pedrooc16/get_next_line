@@ -124,7 +124,7 @@ char	*refresh_buffer(char *buffer, int i)
 		return (NULL);
 	}
 	size_of_buffer = ft_strlen(buffer) - i;
-	refresh = malloc(sizeof(char) * (size_of_buffer + 1));  //nesteeeeee
+	refresh = malloc(sizeof(char) * (size_of_buffer + 1));  
 	if (!refresh)
 		return (NULL);
 	if (buffer[i] == '\n')
