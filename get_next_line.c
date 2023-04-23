@@ -153,7 +153,7 @@ char	*read_line(int fd, char *buffer)
 	}
     if (bytes <= 0)
 	{
-		if (buffer)
+		if (!buffer)
 		{
 			free(buffer); // amanha avaliar se esta linha de codigo faz sentido 
 			buffer = NULL;
@@ -173,13 +173,13 @@ char	*get_next_line(int fd)
 		return (NULL);
 	i = 0;
 	if (buffer && (ft_search(buffer, '\n')))
-	i = 1;
-		if (!i)
-		{
-			buffer = read_line(fd, buffer);
-		if (!buffer)
-				return (NULL);
-		}
+		i = 1;
+	if (!i)
+	{
+		buffer = read_line(fd, buffer);
+	if (!buffer)
+			return (NULL);
+	}
 		i = 0;
 		line = get_the_next_line(buffer, &i);
 		buffer = refresh_buffer(buffer, i);
