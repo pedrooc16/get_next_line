@@ -6,7 +6,7 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:05 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/04/23 18:05:20 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:08:40 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ char	*get_next_line(int fd)
 	{
 		buffer[fd] = read_line(fd, buffer[fd]);
 	if (!buffer[fd])
-			return (NULL);
+		return (NULL);
 	}
 	i = 0;
 	line = get_the_next_line(buffer[fd], &i);
