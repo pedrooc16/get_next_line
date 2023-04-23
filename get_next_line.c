@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 //#include "get_next_line.h"
-#define BUFFER_SIZE 1
+#define BUFFER_SIZE 40
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -114,7 +114,6 @@ char	*get_the_next_line(char *buffer, int * i)
 
 char	*refresh_buffer(char *buffer, int i)
 {
-	int		index;
 	char 	*refresh;
 	size_t	size_of_buffer;
 	int	j;
@@ -124,16 +123,15 @@ char	*refresh_buffer(char *buffer, int i)
 		free(buffer);
 		return (NULL);
 	}
-	index = i;
-	size_of_buffer = ft_strlen(buffer) - index;
-	refresh = malloc(sizeof(char) * (size_of_buffer + 1));
+	size_of_buffer = ft_strlen(buffer) - i;
+	refresh = malloc(sizeof(char) * (size_of_buffer + 1));  //nesteeeeee
 	if (!refresh)
 		return (NULL);
-	if (buffer[index] == '\n')
-	index++;
+	if (buffer[i] == '\n')
+	i++;
 	j = 0;
-	while (buffer[index])
-	refresh[j++] = buffer[index++];
+	while (buffer[i])
+	refresh[j++] = buffer[i++];
 	refresh[j] = '\0';
 	free(buffer);
 	return(refresh);
@@ -155,8 +153,7 @@ char	*read_line(int fd, char *buffer)
 	{
 		if (buffer)
 		{
-			//free(buffer);  
-			buffer = NULL;
+			free(buffer);  
 		}
 		return (NULL);
 	}
