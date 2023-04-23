@@ -146,12 +146,12 @@ char	*read_line(int fd, char *buffer)
 	{
 		temp[bytes] = '\0';
 		buffer = ft_strjoin(buffer, temp);
-		if (ft_search(buffer, '\n') || bytes == 0)
+		if (ft_search(buffer, '\n'))
 		break;
 	}
     if (bytes < 0)
 	{
-		if (buffer)
+		if (buffer && (ft_search(buffer, '\0')))
 		{
 			free(buffer);  
 		}
