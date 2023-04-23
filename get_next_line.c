@@ -189,26 +189,11 @@ int main()
 	char *line;
 	int fd = open("texto.txt", O_RDONLY);
         line = get_next_line(fd);
-		printf("%s\n", line);
-		int i = 0;
-	while (i < 2)
-	{
+		while (line)
+		{
+			printf("%s", line);
+			free(line);
+			line = get_next_line(fd);
+		}
 		free(line);
-		i++;
-        line = get_next_line(fd);
-		printf("%s\n", line);
-	}
-	free(line);
-	line = get_next_line(55);
-	free(line);
-        //printf("\n");
-		while (1)
-	{
-		line = get_next_line(fd);
-		printf("%s", line);
-		free(line);
-		if (!line)
-		break;
-	}
-	free(line);
-	}
+}
