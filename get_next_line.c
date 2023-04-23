@@ -118,7 +118,7 @@ char	*refresh_buffer(char *buffer, int i)
 	size_t	size_of_buffer;
 	int	j;
 
-	if (*buffer == 0)
+	if (buffer[i] == 0)
 	{
 		free(buffer);
 		return (NULL);
