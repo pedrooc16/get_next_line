@@ -6,13 +6,13 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:05 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/04/23 18:08:40 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:11:30 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "get_next_line_bonus.h"
 
-#define BUFFER_SIZE 25
+#define BUFFER_SIZE 20
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -164,7 +164,7 @@ char	*read_line(int fd, char *buffer)
 char	*get_next_line(int fd)
 {
 	char 	*line;
-	static char *buffer;
+	static char *buffer[1024];
 	int	i;
 	
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
@@ -183,3 +183,25 @@ char	*get_next_line(int fd)
 	buffer[fd] = refresh_buffer(buffer[fd], i);
 	return (line);
 	}
+
+
+	int main(void)
+{
+	int fd;
+	int fd2;
+
+	fd = open("texto.txt", O_RDONLY);
+	fd2 = open("joao.txt", O_RDONLY);
+	printf("line 01: %s\n", get_next_line(fd));
+	printf("line 02: %s\n", get_next_line(fd));
+	printf("line 01: %s\n", get_next_line(fd2));
+	printf("line 02: %s\n", get_next_line(fd2));
+	printf("line 01: %s\n", get_next_line(fd));
+	printf("line 02: %s\n", get_next_line(fd));
+	// printf("%s\n", get_next_line(fd));
+	// printf("%s\n", get_next_line(fd));
+	// printf("%s\n", get_next_line(fd));
+	close(fd);
+	close (fd2);
+	return (0);
+}
