@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "get_next_line.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-
-#define BUFFER_SIZE 19
+#include "get_next_line.h"
 
 char	*get_the_next_line(char *buffer, int * i)
 {

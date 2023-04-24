@@ -6,7 +6,6 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-//unistd & stdio for read, fcntl & sys/stat for open;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
