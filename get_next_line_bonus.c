@@ -6,85 +6,11 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:05 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/04/23 18:11:30 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:39:30 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "get_next_line_bonus.h"
-
-#define BUFFER_SIZE 20
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-
-char	*ft_search(const char *s, int c)
-{
-	unsigned char	i;
-
-	i = c;
-	if (!s)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == (char)i)
-			return ((char *)s);
-		s++;
-	}
-	if (i == '\0')
-		return ((char *)s);
-	return (NULL);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	unsigned long int	i;
-	
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-static char	*ft_strcpy(char *dest, const char *src)
-{
-	int		i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	size_t	len1;
-	size_t	len2;
-	char	*newstring;
-
-	if (!s1)
-	{
-		s1 = malloc(1 * sizeof(char));
-		s1[0] = '\0';
-	}
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	newstring = malloc(len1 + len2 + 1);
-	if (!newstring)
-		return (NULL);
-	ft_strcpy(newstring, s1);
-	ft_strcpy(newstring + len1, s2);
-	free(s1);
-	return (newstring);
-}
+#include "get_next_line_bonus.h"
 
 char	*get_the_next_line(char *buffer, int * i)
 {
@@ -128,7 +54,6 @@ char	*refresh_buffer(char *buffer, int i)
 	refresh = malloc(sizeof(char) * (size_of_buffer + 1));  
 	if (!refresh)
 		return (NULL);
-	if (buffer[i] == '\n')
 	i++;
 	j = 0;
 	while (buffer[i])
@@ -189,18 +114,22 @@ char	*get_next_line(int fd)
 {
 	int fd;
 	int fd2;
+	char *line;
 
 	fd = open("texto.txt", O_RDONLY);
 	fd2 = open("joao.txt", O_RDONLY);
-	printf("line 01: %s\n", get_next_line(fd));
-	printf("line 02: %s\n", get_next_line(fd));
-	printf("line 01: %s\n", get_next_line(fd2));
-	printf("line 02: %s\n", get_next_line(fd2));
-	printf("line 01: %s\n", get_next_line(fd));
-	printf("line 02: %s\n", get_next_line(fd));
-	// printf("%s\n", get_next_line(fd));
-	// printf("%s\n", get_next_line(fd));
-	// printf("%s\n", get_next_line(fd));
+	line = get_next_line(fd);
+	printf("line 1 is %s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("line 1 is %s", line);
+	free(line);
+	line = get_next_line(fd2);
+	printf("line 1 is %s", line);
+	free(line);
+	line = get_next_line(fd2);
+	printf("line 1 is %s", line);
+	free(line);
 	close(fd);
 	close (fd2);
 	return (0);
