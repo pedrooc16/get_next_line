@@ -10,80 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "get_next_line.h"
-#define BUFFER_SIZE 25
+// #include "get_next_line.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
 
-char	*ft_search(const char *s, int c)
-{
-	unsigned char	i;
-
-	i = c;
-	if (!s)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == (char)i)
-			return ((char *)s);
-		s++;
-	}
-	if (i == '\0')
-		return ((char *)s);
-	return (NULL);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	unsigned long int	i;
-	
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-static char	*ft_strcpy(char *dest, const char *src)
-{
-	int		i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	size_t	len1;
-	size_t	len2;
-	char	*newstring;
-
-	if (!s1)
-	{
-		s1 = malloc(1 * sizeof(char));
-		s1[0] = '\0';
-	}
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	newstring = malloc(len1 + len2 + 1);
-	if (!newstring)
-		return (NULL);
-	ft_strcpy(newstring, s1);
-	ft_strcpy(newstring + len1, s2);
-	free(s1);
-	return (newstring);
-}
+#define BUFFER_SIZE 19
 
 char	*get_the_next_line(char *buffer, int * i)
 {
@@ -127,7 +60,6 @@ char	*refresh_buffer(char *buffer, int i)
 	refresh = malloc(sizeof(char) * (size_of_buffer + 1));  
 	if (!refresh)
 		return (NULL);
-	if (buffer[i] == '\n')
 	i++;
 	j = 0;
 	while (buffer[i])
@@ -187,7 +119,7 @@ char	*get_next_line(int fd)
 int main()
 {
 	char *line;
-	int fd = open("texto.txt", O_RDONLY);
+	int fd = open("joao.txt", O_RDONLY);
         line = get_next_line(fd);
 		while (line)
 		{
