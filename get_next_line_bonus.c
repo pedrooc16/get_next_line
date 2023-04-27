@@ -6,7 +6,7 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:05 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/04/24 16:39:30 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:00:58 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ char	*refresh_buffer(char *buffer, int i)
 char	*read_line(int fd, char *buffer)
 {
 	int		bytes;
-	char	temp[BUFFER_SIZE + 1];
-
+	char	*temp;
+	
+	temp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!temp)
+		return (NULL);
 	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
 	{
 		temp[bytes] = '\0';
@@ -78,13 +81,13 @@ char	*read_line(int fd, char *buffer)
     if (bytes < 0)
 	{
 		if (buffer && (ft_search(buffer, '\0')))
-		{
-			free(buffer);  
-		}
+				free(buffer);
+		free(temp); 
 		return (NULL);
 	}
-	return (buffer);
-}
+	free(temp);
+	return(buffer);
+	}
 
 char	*get_next_line(int fd)
 {
@@ -110,7 +113,7 @@ char	*get_next_line(int fd)
 	}
 
 
-	int main(void)
+	/*int main(void)
 {
 	int fd;
 	int fd2;
@@ -133,4 +136,4 @@ char	*get_next_line(int fd)
 	close(fd);
 	close (fd2);
 	return (0);
-}
+}*/

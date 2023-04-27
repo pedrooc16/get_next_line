@@ -66,8 +66,11 @@ char	*refresh_buffer(char *buffer, int i)
 char	*read_line(int fd, char *buffer)
 {
 	int		bytes;
-	char	temp[BUFFER_SIZE + 1];
-
+	char	*temp;
+	
+	temp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!temp)
+		return (NULL);
 	while ((bytes = read(fd,temp,BUFFER_SIZE)) > 0)
 	{
 		temp[bytes] = '\0';
@@ -78,13 +81,13 @@ char	*read_line(int fd, char *buffer)
     if (bytes < 0)
 	{
 		if (buffer && (ft_search(buffer, '\0')))
-		{
-			free(buffer);  
-		}
+				free(buffer);
+		free(temp); 
 		return (NULL);
 	}
-	return (buffer);
-}
+	free(temp);
+	return(buffer);
+	}
 
 char	*get_next_line(int fd)
 {
@@ -101,7 +104,7 @@ char	*get_next_line(int fd)
 	{
 		buffer = read_line(fd, buffer);
 	if (!buffer)
-			return (NULL);
+		return (NULL);
 	}
 	i = 0;
 	line = get_the_next_line(buffer, &i);
@@ -110,7 +113,7 @@ char	*get_next_line(int fd)
 	}
 
 
-int main()
+/*int main()
 {
 	char *line;
 	int fd = open("joao.txt", O_RDONLY);
@@ -122,4 +125,4 @@ int main()
 			line = get_next_line(fd);
 		}
 		free(line);
-}
+}*/
