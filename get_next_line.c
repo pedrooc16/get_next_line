@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 	if (!i)
 	{
 		buffer = read_line(fd, buffer);
-	if (!buffer)
+			if (!buffer)
 		return (NULL);
 	}
 	i = 0;

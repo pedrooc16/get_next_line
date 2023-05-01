@@ -6,7 +6,7 @@
 /*   By: pecosta- <pecosta-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:05 by pecosta-          #+#    #+#             */
-/*   Updated: 2023/04/27 14:00:58 by pecosta-         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:15:55 by pecosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ char	*read_line(int fd, char *buffer)
 	return(buffer);
 	}
 
+/*
+buffer has size of 1024 because linux systems limit
+the number of file descriptors that any
+one process may open to 1024 per process.
+*/
+
 char	*get_next_line(int fd)
 {
 	char 	*line;
@@ -103,7 +109,7 @@ char	*get_next_line(int fd)
 	if (!i)
 	{
 		buffer[fd] = read_line(fd, buffer[fd]);
-	if (!buffer[fd])
+			if (!buffer[fd])
 		return (NULL);
 	}
 	i = 0;
